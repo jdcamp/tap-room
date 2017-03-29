@@ -7,13 +7,17 @@ import { Keg } from './keg.model';
 })
 
 export class LowVolumePipe implements PipeTransform {
-  transform(input: Keg[], args) {
+  transform(input: Keg[], desiredFilter) {
     let output: Keg[] = [];
-    for (let i = 0; i < input.length; i++) {
-      if (input[i].volumeRemaining < 10) {
-        output.push(input[i]);
+
+    if (desiredFilter === 'lowVolumeKegs') {
+      for (let i = 0; i < input.length; i++) {
+        if (input[i].volumeRemaining < 10)
+          output.push(input[i]);
       }
+      return output;
+    } else {
+      return input;
     }
-    return output;
   }
 }

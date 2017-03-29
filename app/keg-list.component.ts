@@ -4,6 +4,11 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
+  <select (change)="onChange($event.target.value)">
+    <option value="allKegs">All</option>
+    <option value="lowVolumeKegs">Low inventory</option>
+  </select>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -16,7 +21,7 @@ import { Keg } from './keg.model';
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let keg of childKegList">
+      <tr *ngFor="let keg of childKegList | lowVolume:filterByVolume">
         <td>{{keg.name}}</td>
         <td>{{keg.brand}}</td>
         <td> {{keg.price}}</td>
@@ -37,7 +42,13 @@ export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
 
+  filterByVolume: string = 'allKegs';
+
   // Events
+  onChange(optionFromMenu) {
+    this.filterByVolume = optionFromMenu;
+  }
+
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
   }
