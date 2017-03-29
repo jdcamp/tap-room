@@ -8,24 +8,7 @@ import { Keg } from './keg.model';
 
   <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
 
-  <div *ngIf="edittingKeg">
-    <h1>{{edittingKeg.name}}</h1>
-
-    <form>
-      <label for='name'>Name:</label>
-      <input name='name' type='text' [(ngModel)]="edittingKeg.name" placeholder='Beer name'>
-
-      <label for='brand'>Brand:</label>
-      <input name='brand' type='text' [(ngModel)]="edittingKeg.brand" placeholder='Brand'>
-
-      <label for='price'>Price:</label>
-      <input name='price' type='number' step='.01' min='0' [(ngModel)]="edittingKeg.price" placeholder='Price'>
-
-      <label for='abv'>ABV:</label>
-      <input name='abv' type='number' step='.01' min='0' max='1' [(ngModel)]="edittingKeg.abv" placeholder='ABV'>
-
-    </form>
-  </div>
+  <edit-keg [childSelectedKeg]="selectedKeg"></edit-keg>
   `
 })
 
@@ -35,7 +18,9 @@ export class AppComponent {
     new Keg('Foo', 'Bar', 1.00, 0.40)
   ];
 
+  selectedKeg: Keg = null;
+
   editKeg(keg: Keg) {
-    this.edittingKeg = keg;
+    this.selectedKeg = keg;
   }
 }
