@@ -6,7 +6,7 @@ import { Keg } from './keg.model';
   template: `
   <h1>Hello Tap Room</h1>
 
-  <keg-list [childKegList]="masterKegList"></keg-list>
+  <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
 
   <div *ngIf="edittingKeg">
     <h1>{{edittingKeg.name}}</h1>

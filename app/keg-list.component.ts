@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Keg } from './keg.model';
 
 @Component({
@@ -12,6 +12,7 @@ import { Keg } from './keg.model';
         <td>Price</td>
         <td>ABV</td>
         <td>Sell Pint</td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,9 @@ import { Keg } from './keg.model';
         <td>
           <button (click)='sellPint(keg)' [disabled]="kegSoldOut(keg)">Sell 1 Pint</button> {{keg.volumeRemaining}}
         </td>
+        <td>
+          <button (click)="editButtonHasBeenClicked(keg)">Edit</button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -31,6 +35,13 @@ import { Keg } from './keg.model';
 
 export class KegListComponent {
   @Input() childKegList: Keg[];
+  @Output() clickSender = new EventEmitter();
+
+  // Events
+  editButtonHasBeenClicked(kegToEdit: Keg) {
+    this.clickSender.emit(kegToEdit);
+  }
+  // *********************************************
 
   sellPint(keg: Keg) {
     if (keg.volumeRemaining > 0)
