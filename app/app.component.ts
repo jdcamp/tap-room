@@ -34,6 +34,13 @@ import { Component } from '@angular/core';
 
       <label for='brand'>Brand:</label>
       <input name='brand' type='text' [(ngModel)]="edittingKeg.brand" placeholder='Brand'>
+
+      <label for='price'>Price:</label>
+      <input name='price' type='number' step='.01' min='0' [(ngModel)]="edittingKeg.price" placeholder='Price'>
+
+      <label for='abv'>ABV:</label>
+      <input name='abv' type='number' step='.01' min='0' max='1' [(ngModel)]="edittingKeg.abv" placeholder='ABV'>
+
     </form>
   </div>
   `
