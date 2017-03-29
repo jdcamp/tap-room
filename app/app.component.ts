@@ -6,7 +6,7 @@ import { Keg } from './keg.model';
   template: `
   <h1>Hello Tap Room</h1>
 
-  <keg-list></keg-list>
+  <keg-list [childKegList]="masterKegList"></keg-list>
 
   <div *ngIf="edittingKeg">
     <h1>{{edittingKeg.name}}</h1>
@@ -30,6 +30,11 @@ import { Keg } from './keg.model';
 })
 
 export class AppComponent {
+  masterKegList: Keg[] = [
+    new Keg('Bud Lite', 'Budweiser', 2.50, 0.05),
+    new Keg('Foo', 'Bar', 1.00, 0.40)
+  ];
+
   editKeg(keg: Keg) {
     this.edittingKeg = keg;
   }

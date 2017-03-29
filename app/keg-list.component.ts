@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Keg } from './keg.model';
 
 @Component({
@@ -15,7 +15,7 @@ import { Keg } from './keg.model';
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let keg of kegs">
+      <tr *ngFor="let keg of childKegList">
         <td>{{keg.name}}</td>
         <td>{{keg.brand}}</td>
         <td> {{keg.price}}</td>
@@ -30,10 +30,7 @@ import { Keg } from './keg.model';
 })
 
 export class KegListComponent {
-  kegs: Keg[] = [
-    new Keg('Bud Lite', 'Budweiser', 2.50, 0.05),
-    new Keg('Foo', 'Bar', 1.00, 0.40)
-  ];
+  @Input() childKegList: Keg[];
 
   sellPint(keg: Keg) {
     if (keg.volumeRemaining > 0)
