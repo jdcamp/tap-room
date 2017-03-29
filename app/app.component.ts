@@ -4,11 +4,25 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
   <h1>Hello Tap Room</h1>
-  <ul>
-    <li *ngFor="let keg of kegs">
-      {{keg.name}}
-    </li>
-  </ul>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Brand</td>
+        <td>Price</td>
+        <td>ABV</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let keg of kegs">
+        <td>{{keg.name}}</td>
+        <td>{{keg.brand}}</td>
+        <td>$ {{keg.price}}</td>
+        <td>{{keg.abv}}</td>
+      </tr>
+    </tbody>
+  </table>
   `
 })
 
