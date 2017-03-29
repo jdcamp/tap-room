@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { KegListComponent } from './keg-list.component';
 import { EditKegComponent } from './edit-keg.component';
 import { NewKegComponent } from './new-keg.component';
+import { LowVolumePipe } from './low-volume.pipe';
 
 @NgModule({
   imports: [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, KegListComponent, EditKegComponent, NewKegComponent ],
+  declarations: [ AppComponent, KegListComponent, EditKegComponent, NewKegComponent, LowVolumePipe ],
   bootstrap: [ AppComponent ]
 })
 
