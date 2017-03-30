@@ -8,6 +8,8 @@ import { Keg } from './keg.model';
 
   <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
 
+  <receipt-view></receipt-view>
+
   <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEditting()"></edit-keg>
   <new-keg (newKegSender)="addKeg($event)"></new-keg>
   `
