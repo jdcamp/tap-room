@@ -9,7 +9,7 @@ import { Bill } from './bill.model';
 
   <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (saleSender)="saleMade($event)"></keg-list>
 
-  <receipt-view [childBill]="testBill"></receipt-view>
+  <receipt-view [childBill]="testBill" (paidSender)="billPaid()"></receipt-view>
 
   <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEditting()"></edit-keg>
   <new-keg (newKegSender)="addKeg($event)"></new-keg>
@@ -21,7 +21,7 @@ export class AppComponent {
     new Keg('Bud Lite', 'Budweiser', 2.50, 0.05),
     new Keg('Foo', 'Bar', 1.00, 0.40)
   ];
-  testBill: Bill = new Bill();
+  testBill: Bill = null;
 
   selectedKeg: Keg = null;
 
@@ -30,11 +30,16 @@ export class AppComponent {
   }
 
   saleMade(keg: Keg) {
+    if (this.testBill === null)
+      this.testBill = new Bill();
     this.testBill.addOrder(keg, 1);
   }
 
   finishedEditting() {
     this.selectedKeg = null;
+  }
+  billPaid() {
+    this.testBill = null;
   }
 
   addKeg(keg: Keg) {
