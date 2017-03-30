@@ -27,10 +27,10 @@ import { Keg } from './keg.model';
         <td> {{keg.price}}</td>
         <td>{{keg.abv}}</td>
         <td>
-          <button (click)='sellPint(keg)' [disabled]="kegSoldOut(keg)">Sell 1 Pint</button> {{keg.volumeRemaining}}
+          <button class="btn btn-success" (click)='sellPint(keg)' [disabled]="kegSoldOut(keg)">Sell 1 Pint</button> {{keg.volumeRemaining}}
         </td>
         <td>
-          <button (click)="editButtonHasBeenClicked(keg)">Edit</button>
+          <button class="btn btn-warning" (click)="editButtonHasBeenClicked(keg)">Edit</button>
         </td>
       </tr>
     </tbody>

@@ -21,7 +21,7 @@ import { Keg } from './keg.model';
         <label for='abv'>ABV:</label>
         <input name='abv' type='number' step='.01' min='0' max='1' [(ngModel)]="childSelectedKeg.abv" placeholder='ABV'>
       </form>
-      <button (click)="doneButtonClicked()">Done</button>
+      <button class="btn btn-primary" (click)="doneButtonClicked()">Done</button>
     </div>
   </div>
   `
