@@ -41,6 +41,7 @@ import { Keg } from './keg.model';
 export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
+  @Output() saleSender = new EventEmitter();
 
   filterByVolume: string = 'allKegs';
 
@@ -55,8 +56,10 @@ export class KegListComponent {
   // *********************************************
 
   sellPint(keg: Keg) {
-    if (keg.volumeRemaining > 0)
+    if (keg.volumeRemaining > 0) {
       --keg.volumeRemaining;
+      this.saleSender.emit(keg);
+    }
   }
 
   kegSoldOut(keg: Keg) {

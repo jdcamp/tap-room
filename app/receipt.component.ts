@@ -5,24 +5,15 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'receipt-view',
   template: `
-  <div *ngIf="bill">
+  <div *ngIf="childBill">
     <ul>
-      <li *ngFor="let item of bill.items">{{item.product.name}}: \${{item.total()}}</li>
+      <li *ngFor="let item of childBill.items">{{item.product.name}}  \${{item.product.price}} * {{item.quantity}} :  \${{item.total()}}</li>
     </ul>
+    <p>Total: \${{childBill.total()}}</p>
   </div>
   `
 })
 
 export class ReceiptComponent {
-  bill: Bill = null;
-
-  // Events
-  receiveOrder(order) {
-    if (! this.bill) {
-      this.bill = new Bill();
-    }
-
-    this.bill.addOrder(order.drink, order.quantity);
-  }
-  // *********************************************
+  @Input() childBill: Bill;
 }
