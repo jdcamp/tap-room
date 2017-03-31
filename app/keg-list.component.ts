@@ -21,7 +21,7 @@ import { Keg } from './keg.model';
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let keg of childKegList | lowVolume:filterByVolume">
+      <tr *ngFor="let keg of childKegList | lowVolume:filterByVolume" [class]='isLow(keg)'>
         <td>{{keg.name}}</td>
         <td>{{keg.brand}}</td>
         <td> {{keg.price}}</td>
@@ -64,5 +64,9 @@ export class KegListComponent {
 
   kegSoldOut(keg: Keg) {
     return keg.volumeRemaining <= 0;
+  }
+  isLow(keg: Keg) {
+    if (keg.volumeRemaining  < 120)
+      return "red"
   }
 }
